@@ -1,3 +1,3 @@
-import homeStyle from './home';
+import todayStyle from './today';
 
-export { homeStyle }
+export { todayStyle };
