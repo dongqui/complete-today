@@ -7,6 +7,7 @@ import Modal from 'react-native-modal';
 
 import styles from './TodoStyles';
 import TodoItem from './TodoItem';
+import CustomButton from '../shared/CustomButton';
 
 function TodoList() {
   const [ isModalVisible, setIsModalVisible ] = useState(false);
@@ -18,28 +19,33 @@ function TodoList() {
        color="#f194ff"
        onPress={() => setIsModalVisible(true)}
        />
+       <CustomButton
+        title='hello world'
+        buttonColor='black'
+        titleColor='white'
+       >
+
+       </CustomButton>
       <Modal isVisible={isModalVisible}>
         <View style={styles.modalContainer}>
-        <TextInput
-          autoFocus={true}
-          style={styles.modalTextInput}                    
-        />
-          <View style={styles.modalButtonContainer}>
-            <View style={styles.modalButton}>
-              <Button
-                title="확인"
-                color="#000000"
-                onPress={() => setIsModalVisible(false)}
-              />
-            </View>
-            <View style={styles.modalButton}>
-              <Button
-                title="취소"
-                color="#000000"
-                onPress={() => setIsModalVisible(false)}
-              /> 
-            </View>                     
-          </View>        
+          <TextInput
+            autoFocus={true}
+            style={styles.modalTextInput}                    
+          />
+          <View style={styles.modalButtonContainer}>            
+            <CustomButton
+              title="확인"
+              buttonColor='black'
+              titleColor='white'
+              onPress={() => setIsModalVisible(false)}
+            />                    
+            <CustomButton
+              title="취소"      
+              buttonColor='black'
+              titleColor='white'        
+              onPress={() => setIsModalVisible(false)}
+            /> 
+          </View>                          
         </View>
       </Modal>
     </View>

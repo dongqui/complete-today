@@ -12,16 +12,12 @@ export default StyleSheet.create({
     marginBottom: 10,
     height: 60,
     color: '#000000',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    fontSize: 30,
+    padding: 10
   },
   modalButtonContainer: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
-  modalButton: {
-    margin: 2,
-    flex:1,
-    borderRadius: 10,
-    width: '100%',
-  }
 });
