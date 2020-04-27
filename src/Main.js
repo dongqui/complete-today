@@ -10,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import BottomTabNavigator from './components/navigation/BottomTabNavigator';
+import BottomTabNavigator from './navigation/BottomTabNavigator';
 
 
 const Stack = createStackNavigator();
