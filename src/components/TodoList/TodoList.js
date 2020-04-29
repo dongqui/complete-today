@@ -1,51 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { addTodo } from '../../reducers/todos';
 
-import { Text, View, Button, TextInput } from 'react-native';
+import { Text, View, Button, TextInput, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 
 import styles from './TodoStyles';
 import TodoItem from './TodoItem';
+import DoneItem from './DoneItem';
 import CustomButton from '../shared/CustomButton';
 
 function TodoList() {
-  const [ isModalVisible, setIsModalVisible ] = useState(false);
+  const [ modalVisible, setModalVisible ] = useState(false);
+  const [ content, setContent ] = useState('');
+  const dispatch = useDispatch();
+  const { todoList, doneList } = useSelector(state => state.todos, []);
+
+  const submitTodo = () => {
+    dispatch(addTodo(content));
+    setContent('');
+    setModalVisible(false);
+  }
+  useEffect(() => {
+
+  }, [todoList]);
 
   return (
     <View>
       <Button
        title="Press me"
        color="#f194ff"
-       onPress={() => setIsModalVisible(true)}
+       onPress={() => setModalVisible(true)}
        />
-       <CustomButton
-        title='hello world'
-        buttonColor='black'
-        titleColor='white'
-       >
+      <ScrollView>
+        {todoList.map(todo => <TodoItem todo={todo}/>)}
+      </ScrollView>
+      <ScrollView>
+        {doneList.map(todo => <DoneItem todo={todo}/>)}
+      </ScrollView>
 
-       </CustomButton>
-      <Modal isVisible={isModalVisible}>
+
+      {/* ------------ Modal ----------------- */}
+      <Modal isVisible={modalVisible}>
         <View style={styles.modalContainer}>
           <TextInput
             autoFocus={true}
-            style={styles.modalTextInput}                    
+            style={styles.modalTextInput}       
+            onChangeText={(text) => setContent(text)}             
           />
           <View style={styles.modalButtonContainer}>            
             <CustomButton
               title="확인"
               buttonColor='black'
               titleColor='white'
-              onPress={() => setIsModalVisible(false)}
+              onPress={submitTodo}
             />                    
             <CustomButton
               title="취소"      
               buttonColor='black'
               titleColor='white'        
-              onPress={() => setIsModalVisible(false)}
+              onPress={() => setModalVisible(false)}
             /> 
-          </View>                          
+          </View>
         </View>
       </Modal>
     </View>
