@@ -31,3 +31,7 @@ Redux는 ducks구조로 모아놓고, 컴포넌트/스타일도 컴포넌트 단
     - redux-thunk랑 redux-saga랑 고민했는데, 역시나 이번 프로젝트는 react-native로 빠르게 앱을 완성시켜보자라는 목적에 맞게 간단한 thunk로 결정.
       - thunk는 사실상 액션에 dispatch, getState만 주입해주는 정도로 보인다. 정말 가벼움! 
       - saga는 비동기 처리도 제너레이터를 이용해 순수함수를 이용할 수 있어 테스트에도 용이하고 thunk와 가장 큰 차이는 store를 구독한다는 점! saga는 특정 액션이 발생하면 거기에 맞게 반응이 가능하다. 조금 더 정교한 기능이 필요하면 saga를 쓰는 게 맞을 거 같다(?)
+  
+  - 
+    쉽게만 봤던 todoList 앱이 비동기로 돌리니까 뭔가 로직이 번잡해진다. AsnycStorage가 key/value 기반의 단순한 저장소다보니 store의 state 값이랑, AsnycStorage에 저장된 값 sync 맞추는 일이 특히 그렇다. AsnycStorage 사용을 추상화시킬 필요가 보인다. 
+    쉽게 가려다가 일만 더 생겼네...ㅎㅎㅎㅎㅎㅎㅎ
