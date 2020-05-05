@@ -20,7 +20,7 @@ export const getTodoThunk = () => {
 export const postTodoThunk = (todo) => {
   return async function (dispatch, getState) {
     try {
-      const todoWithId = {...todo, id:getState().todos.length + '_' + currentDate()}
+      const todoWithId = {...todo, id: `${getState().todos.length + 1}_${currentDate()}`}
       await setData(currentDate(), JSON.stringify([...getState().todos.todoList, todoWithId]));
       dispatch(getTodoThunk());
     } catch (e) {
@@ -41,8 +41,6 @@ export const putTodoThunk = (todo) => {
   }
 }
 
-
-
 const initialState = {
   todoList: [],
   length: 0
@@ -55,7 +53,7 @@ const reducer = (state=initialState, action) => {
       return {
         ...state, 
         todoList: payload.filter(v => v.activate),
-        length: payload.length - 1
+        length: payload.length
       }
   }
   return state;
