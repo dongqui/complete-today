@@ -5,17 +5,17 @@ import { Text, View, Image } from 'react-native';
 
 import styles from './TodoStyles';
 
-import { doneTodo, deleteTodo } from '../../reducers/todos';
+import { setTodoThunk } from '../../reducers/todos';
 
 export default function TodoItem({ todo }) {
   
   const dispatch = useDispatch();
 
-  const doneTodo = () => {
-    dispatch(doneTodo({...todo, status: 'done'}))
+  const onPressDone = () => {
+    dispatch(setTodoThunk({...todo, status: 'done'}))
   }
-  const deleteTodo = () => {
-    dispatch(deleteTodo({...todo, activate: false}))
+  const onPressDelete = () => {
+    dispatch(setTodoThunk({...todo, activate: false}))
   }
 
   return (
@@ -27,9 +27,9 @@ export default function TodoItem({ todo }) {
       </View>
       
       <View style={{height: 50, marginTop: 2, ...styles.todoItemContainer}}>
-        <Text onPress={doneTodo} style={{flex: 1}}>완료</Text>
+        <Text onPress={onPressDone} style={{flex: 1}}>완료</Text>
         <Text style={{flex: 1}}>수정</Text>
-        <Text onPress={deleteTodo} style={{flex: 1}}>삭제</Text>
+        <Text onPress={onPressDelete} style={{flex: 1}}>삭제</Text>
       </View>
     </View>
     

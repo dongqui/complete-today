@@ -5,14 +5,14 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
 import TodoList from './components/TodoList/TodoList';
 
-import { initTodoThunk } from './reducers/todos'
+import { getTodoThunk } from './reducers/todos'
 
 export default function Main(props) {
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initTodoThunk());
+    dispatch(getTodoThunk());
   }, [dispatch]);
 
   return (

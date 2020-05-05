@@ -15,16 +15,13 @@ function TodoList() {
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ content, setContent ] = useState('');
   const dispatch = useDispatch();
-  const { todoList, doneList } = useSelector(state => state.todos, []);
+  const { todoList } = useSelector(state => state.todos, []);
 
   const submitTodo = () => {
     dispatch(addTodoThunk({ content, status: 'todo', activate: 'true' }));
     setContent('');
     setModalVisible(false);
   }
-  useEffect(() => {
-
-  }, [todoList]);
 
   return (
     <View>
@@ -34,10 +31,10 @@ function TodoList() {
        onPress={() => setModalVisible(true)}
        />
       <ScrollView>
-        {todoList.map(todo => <TodoItem todo={todo}/>)}
+        {todoList.filter(todo => todo.activate && todo.status === 'todo').map(todo => <TodoItem key={todo.id} todo={todo}/>)}
       </ScrollView>
       <ScrollView>
-        {doneList.map(todo => <DoneItem todo={todo}/>)}
+        {todoList.filter(todo => todo.activate && todo.status === 'done').map(todo => <DoneItem key={todo.id} todo={todo}/>)}
       </ScrollView>
 
 
