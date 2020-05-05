@@ -10,8 +10,7 @@ export default function DoneItem({ todo }) {
     <View>
       <View style={{...styles.todoItemContainer, backgroundColor: 'red'}}>
         <Image style={styles.tinyLogo} source={require('./robot-prod.png')} />
-        <Text>{todo}</Text>
-        <Text>{todo}</Text>
+        <Text>{todo.content}</Text>
       </View>
 
     </View>
