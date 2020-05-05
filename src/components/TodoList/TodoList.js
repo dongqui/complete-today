@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addTodoThunk } from '../../reducers/todos';
+import { postTodoThunk } from '../../reducers/todos';
 
 import { Text, View, Button, TextInput, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
@@ -18,11 +18,11 @@ function TodoList() {
   const { todoList } = useSelector(state => state.todos, []);
 
   const submitTodo = () => {
-    dispatch(addTodoThunk({ content, status: 'todo', activate: 'true' }));
+    dispatch(postTodoThunk({ content, status: 'todo', activate: 'true' }));
     setContent('');
     setModalVisible(false);
   }
-
+  
   return (
     <View>
       <Button
