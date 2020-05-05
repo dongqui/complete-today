@@ -35,3 +35,9 @@ Redux는 ducks구조로 모아놓고, 컴포넌트/스타일도 컴포넌트 단
   - 
     쉽게만 봤던 todoList 앱이 비동기로 돌리니까 뭔가 로직이 번잡해진다. AsnycStorage가 key/value 기반의 단순한 저장소다보니 store의 state 값이랑, AsnycStorage에 저장된 값 sync 맞추는 일이 특히 그렇다. AsnycStorage 사용을 추상화시킬 필요가 보인다. 
     쉽게 가려다가 일만 더 생겼네...ㅎㅎㅎㅎㅎㅎㅎ
+
+
+## 2020-05-05
+- AsyncStorage를 건드리는 대신에 action들을 단순화 시켰다. 데이터를 통으로 던져주는 AsyncStorage를 좀 편하게 쓰기 위해 todoList, doneList를 하나의 list로 관리하고 필요 할때 fillter로 분기함.
+
+- 예광탄은 대충 완성된 거 같다
