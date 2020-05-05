@@ -1,4 +1,4 @@
-<!-- ## [https://expo.io/@dongqui9/rn_weather](https://expo.io/@dongqui9/rn_weather) -->
+[https://expo.io/@dongqui9/complete_today](https://expo.io/@dongqui9/complete_today) (미완)
 
 ## 2020-04-27
 - 언제나 고민되는 폴더 구조.<br>
