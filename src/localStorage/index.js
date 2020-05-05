@@ -15,3 +15,11 @@ export const getData = async (key) => {
     return e;
   }
 }
+
+export const clearData = async (key) => {
+  try {
+    await AsyncStorage.clear();
+  } catch(e) {
+    return e;
+  }
+}

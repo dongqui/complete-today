@@ -11,6 +11,8 @@ import TodoItem from './TodoItem';
 import DoneItem from './DoneItem';
 import CustomButton from '../shared/CustomButton';
 
+import { clearData } from '../../localStorage/index'
+
 function TodoList() {
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ content, setContent ] = useState('');
@@ -22,14 +24,21 @@ function TodoList() {
     setContent('');
     setModalVisible(false);
   }
-  
+  console.log(todoList)
   return (
     <View>
+      
       <Button
        title="Press me"
        color="#f194ff"
        onPress={() => setModalVisible(true)}
        />
+
+      {/* <Button
+        title="clear"
+        color="#f194ff"
+        onPress={() => clearData()}
+       /> */}
       <ScrollView>
         {todoList.filter(todo => todo.activate && todo.status === 'todo').map(todo => <TodoItem key={todo.id} todo={todo}/>)}
       </ScrollView>
