@@ -17,7 +17,8 @@ export default function Main(props) {
 
   return (
       <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        {/* {Platform.OS === 'ios' && <StatusBar barStyle="default" />} */}
+        <StatusBar/>
         <TodoList />
       </View>
   );
