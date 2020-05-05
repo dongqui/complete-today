@@ -10,10 +10,7 @@ export const setData = async (key, value) => {
 
 export const getData = async (key) => {
   try {
-    const value = await AsyncStorage.getItem('key')
-    if(value) {
-      return value;
-    }
+    return await AsyncStorage.getItem(key);
   } catch(e) {
     return e;
   }
