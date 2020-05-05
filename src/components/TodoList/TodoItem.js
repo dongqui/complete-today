@@ -5,17 +5,17 @@ import { Text, View, Image } from 'react-native';
 
 import styles from './TodoStyles';
 
-import { setTodoThunk } from '../../reducers/todos';
+import { putTodoThunk } from '../../reducers/todos';
 
 export default function TodoItem({ todo }) {
   
   const dispatch = useDispatch();
 
   const onPressDone = () => {
-    dispatch(setTodoThunk({...todo, status: 'done'}))
+    dispatch(putTodoThunk({...todo, status: 'done'}))
   }
   const onPressDelete = () => {
-    dispatch(setTodoThunk({...todo, activate: false}))
+    dispatch(putTodoThunk({...todo, activate: false}))
   }
 
   return (
