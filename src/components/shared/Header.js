@@ -6,13 +6,13 @@ function Header({ leftComponent, centerComponent, rightComponent, style }) {
   return (
     <View style={{...styles.container, ...style}}>
       <View>
-        {leftComponent}
+        {leftComponent ? leftComponent : ''}
       </View>
       <View>
-        {centerComponent}
+        {centerComponent ? centerComponent : ''}
       </View>
       <View>
-        {rightComponent}
+        {rightComponent ? rightComponent : ''}
       </View>
     </View>
   )
@@ -24,3 +24,5 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
   },
 })
+
+export default Header;
