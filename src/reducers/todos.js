@@ -2,7 +2,9 @@ import { action, currentDate } from './helper';
 import { setData, getData } from '../localStorage/index';
 
 const GET = 'todos/GET';
+const PRESS = 'todo/PRESS';
 export const getTodo = action(GET);
+export const pressTodo = action(PRESS);
 
 export const getTodoThunk = () => {
   return async function(dispatch) {
@@ -43,6 +45,7 @@ export const putTodoThunk = (todo) => {
 
 const initialState = {
   todoList: [],
+  pressed: null,
   length: 0
 }
 
@@ -54,6 +57,11 @@ const reducer = (state=initialState, action) => {
         ...state, 
         todoList: payload.filter(v => v.activate),
         length: payload.length
+      }
+    case PRESS:
+      return {
+        ...state,
+        pressed: payload
       }
   }
   return state;
