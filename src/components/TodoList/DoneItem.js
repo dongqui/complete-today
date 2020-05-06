@@ -1,19 +1,31 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Text, View, Image } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 import styles from './TodoStyles';
 
+import { pressTodo } from '../../reducers/todos';
+
 export default function DoneItem({ todo }) {
+  const dispatch = useDispatch();
+  const pressed = useSelector(state => state.todos.pressed);
+
+  const press = () => {
+    if (todo.id === pressed) {
+      dispatch(pressTodo(null))
+    } else {
+      dispatch(pressTodo(todo.id))
+    }
+  }
 
   return (
-    <View>
-      <View style={{...styles.todoItemContainer, backgroundColor: 'red'}}>
-        <Image style={styles.tinyLogo} source={require('./robot-prod.png')} />
-        <Text>{todo.content}</Text>
+    <TouchableOpacity onPress={press}>
+      <View style={styles.itemContainer}>
+        <Text style={styles.doneItem} >{todo.content}</Text>
       </View>
 
-    </View>
-    
+      {pressed === todo.id && <Text>test</Text>}
+    </TouchableOpacity>
   )
 }
