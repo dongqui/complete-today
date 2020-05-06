@@ -1,18 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 function Header({ leftComponent, centerComponent, rightComponent, style }) {
 
   return (
     <View style={{...styles.container, ...style}}>
       <View>
-        {leftComponent ? leftComponent : ''}
+        {leftComponent ? leftComponent : null}
       </View>
       <View>
-        {centerComponent ? centerComponent : ''}
+        {centerComponent ? centerComponent : null}
       </View>
       <View>
-        {rightComponent ? rightComponent : ''}
+        {rightComponent ? rightComponent : null}
       </View>
     </View>
   )
@@ -22,6 +22,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent:'space-between',
+    padding: 5,
+    backgroundColor: '#ffffff',
+    borderBottomColor: '#bbb',
+    borderBottomWidth: 1,
+    marginBottom: 10,
   },
 })
 
