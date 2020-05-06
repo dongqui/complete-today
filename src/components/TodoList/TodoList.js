@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { postTodoThunk } from '../../reducers/todos';
 
-import { Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { Text, View, TextInput, ScrollView } from 'react-native';
 import Modal from 'react-native-modal';
 
 import styles from './TodoStyles';
 import TodoItem from './TodoItem';
 import DoneItem from './DoneItem';
-import CustomButton from '../shared/CustomButton';
+import { CustomButton, Header} from '../shared/index';
 
 import { clearData } from '../../localStorage/index'
 
@@ -24,28 +24,39 @@ function TodoList() {
     setContent('');
     setModalVisible(false);
   }
-  console.log(todoList)
-  return (
-    <View>
-      
-      <Button
-       title="Press me"
-       color="#f194ff"
-       onPress={() => setModalVisible(true)}
-       />
 
+  return (
+    <View style={styles.container}>      
       {/* <Button
         title="clear"
         color="#f194ff"
         onPress={() => clearData()}
        /> */}
-      <ScrollView>
-        {todoList.filter(todo => todo.activate && todo.status === 'todo').map(todo => <TodoItem key={todo.id} todo={todo}/>)}
-      </ScrollView>
-      <ScrollView>
-        {todoList.filter(todo => todo.activate && todo.status === 'done').map(todo => <DoneItem key={todo.id} todo={todo}/>)}
-      </ScrollView>
-
+      <View style={styles.list}>
+        <Header
+          leftComponent={<Text style={styles.title}>해야할 일</Text>}
+        />
+        {/* <CustomButton
+            title="Press me"
+            buttonColor="white"
+            titleColor="black"
+            customStyles={styles.listHeaderButton}
+            onPress={() => setModalVisible(true)}
+          /> */}
+        
+        <ScrollView>
+          {todoList.filter(todo => todo.activate && todo.status === 'todo').map(todo => <TodoItem key={todo.id} todo={todo}/>)}
+        </ScrollView>
+      </View>
+      
+      <View style={styles.list}>
+        <Header
+          leftComponent={<Text style={styles.title}>해낸 일</Text>}
+        />
+        <ScrollView>
+          {todoList.filter(todo => todo.activate && todo.status === 'done').map(todo => <DoneItem key={todo.id} todo={todo}/>)}
+        </ScrollView>
+      </View>
 
       {/* ------------ Modal ----------------- */}
       <Modal isVisible={modalVisible}>
