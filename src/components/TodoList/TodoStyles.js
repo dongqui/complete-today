@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import layOut from '../../constants/Layout';
+import layout from '../../constants/Layout';
 
 export default StyleSheet.create({
   // -------------------- Modal ------------
@@ -25,12 +25,67 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
 
+
+  // -------------------todoList -------------
+  container: {
+    width: layout.window.width - 50,
+    marginTop: 50,
+    marginBottom: 50,
+    flex: 1,
+    justifyContent: 'flex-start',
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+  },
+  title: {
+    fontWeight: '300',
+    fontSize: 30,
+  },
+  list: {
+    flex: 1,
+  },
+
+  listHeader: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  listHeaderButton: {
+    flex: 1,
+  },
+
+
   // -------------------- TodoItem ------------
-  todoItemContainer: {
+  itemContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'yellow'
+    padding: 10,
+  },
+
+  optionList: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10,
+  },
+
+  optionItem: {
+    flex:1,
+    textAlign: 'center'
+  },
+
+  todoItem: {
+    fontSize: 20,
+    fontWeight: '400',
+  },
+
+  doneItem: {
+    fontSize: 20,
+    fontWeight: '100',
+    textDecorationLine: 'line-through'
   },
 
   tinyLogo: {
