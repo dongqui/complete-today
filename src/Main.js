@@ -17,7 +17,7 @@ export default function Main(props) {
 
   return (
       <View style={styles.container}>
-        <StatusBar/>
+        <StatusBar barStyle="light-content"/>
         <TodoList />
       </View>
   );
@@ -26,5 +26,7 @@ export default function Main(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#000000',
   },
 });
