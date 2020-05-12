@@ -1,15 +1,19 @@
 import { action, currentDate } from './helper';
-import { setData, getData } from '../localStorage/index';
+import { insertTodo, updateTodo, selectTodo } from '../localStorage/index';
 
 const GET = 'todos/GET';
+const POST = 'todos/POST';
+const PUT = 'todos/PUT';
 const PRESS = 'todo/PRESS';
 export const getTodo = action(GET);
+export const postTodo = action(POST);
+export const putTodo = action(PUT);
 export const pressTodo = action(PRESS);
 
 export const getTodoThunk = () => {
   return async function(dispatch) {
     try {
-      const todos = await getData(currentDate());
+      const todos = await selectTodo(currentDate());
       if (todos) {
         dispatch(getTodo(JSON.parse(todos)));
       }
@@ -20,11 +24,12 @@ export const getTodoThunk = () => {
 }
 
 export const postTodoThunk = (todo) => {
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     try {
-      const todoWithId = {...todo, id: `${getState().todos.length + 1}_${currentDate()}`}
-      await setData(currentDate(), JSON.stringify([...getState().todos.todoList, todoWithId]));
-      dispatch(getTodoThunk());
+      const todos = await insertTodo(currentDate(), todo);
+      if (todos) {
+        dispatch(postTodo(JSON.parse(todos)));
+      }
     } catch (e) {
       console.log(e)
     }
@@ -32,11 +37,12 @@ export const postTodoThunk = (todo) => {
 }
 
 export const putTodoThunk = (todo) => {
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     try {
-      const newList = [...getState().todos.todoList.filter(v => v.id !== todo.id), todo]
-      await setData(currentDate(), JSON.stringify(newList));
-      dispatch(getTodoThunk());
+      const todos = await updateTodo(currentDate(), todo);
+      if (todos) {
+        dispatch(putTodo(JSON.parse(todos)));
+      }
     } catch (e) {
       console.log(e)
     }
@@ -46,17 +52,17 @@ export const putTodoThunk = (todo) => {
 const initialState = {
   todoList: [],
   pressed: null,
-  length: 0
 }
 
 const reducer = (state=initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case GET:
+    case POST:
+    case PUT:
       return {
         ...state, 
         todoList: payload.filter(v => v.activate),
-        length: payload.length,
         pressed: null,
       }
     case PRESS:
