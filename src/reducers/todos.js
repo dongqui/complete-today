@@ -56,7 +56,8 @@ const reducer = (state=initialState, action) => {
       return {
         ...state, 
         todoList: payload.filter(v => v.activate),
-        length: payload.length
+        length: payload.length,
+        pressed: null,
       }
     case PRESS:
       return {
