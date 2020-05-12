@@ -1,7 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { textAlignCenter } from '../shared/sharedStyles';
 import layout from '../../constants/Layout';
 
 export default StyleSheet.create({
+  // -------------------- Modal ------------
+  textAlignCenter,
+
   // -------------------- Modal ------------
   modalContainer: {
     flex:1,
@@ -63,6 +67,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 10,
+    marginTop: 10,
   },
 
   optionList: {
@@ -80,12 +85,16 @@ export default StyleSheet.create({
   todoItem: {
     fontSize: 20,
     fontWeight: '400',
+    flex: 1,
+    marginLeft: 20,
   },
 
   doneItem: {
+    flex: 1,
     fontSize: 20,
+    marginLeft: 20,
     fontWeight: '100',
-    textDecorationLine: 'line-through'
+    textDecorationLine: 'line-through',
   },
 
   tinyLogo: {
