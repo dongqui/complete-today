@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { postTodoThunk } from '../../reducers/todos';
 
-import { Text, View, TextInput, ScrollView } from 'react-native';
+import { Text, View, TextInput, ScrollView, Button } from 'react-native';
 import Modal from 'react-native-modal';
+import { Entypo } from '@expo/vector-icons';
 
 import styles from './TodoStyles';
 import TodoItem from './TodoItem';
@@ -34,16 +35,9 @@ function TodoList() {
        /> */}
       <View style={styles.list}>
         <Header
-          leftComponent={<Text style={styles.title}>해야할 일</Text>}
-        />
-        {/* <CustomButton
-            title="Press me"
-            buttonColor="white"
-            titleColor="black"
-            customStyles={styles.listHeaderButton}
-            onPress={() => setModalVisible(true)}
-          /> */}
-        
+          leftComponent={<Text style={styles.title}>오늘 할 일</Text>}
+          rightComponent={<Entypo name="edit" size={24} onPress={() => setModalVisible(true)}/>}
+        />        
         <ScrollView>
           {todoList.filter(todo => todo.activate && todo.status === 'todo').map(todo => <TodoItem key={todo.id} todo={todo}/>)}
         </ScrollView>
@@ -51,7 +45,7 @@ function TodoList() {
       
       <View style={styles.list}>
         <Header
-          leftComponent={<Text style={styles.title}>해낸 일</Text>}
+          leftComponent={<Text style={styles.title}>오늘 해낸 일</Text>}
         />
         <ScrollView>
           {todoList.filter(todo => todo.activate && todo.status === 'done').map(todo => <DoneItem key={todo.id} todo={todo}/>)}
