@@ -6,11 +6,15 @@ import { AntDesign } from '@expo/vector-icons';
 
 import styles from './TodoStyles';
 
-import { pressTodo } from '../../reducers/todos';
+import { pressTodo, putTodoThunk } from '../../reducers/todos';
 
 export default function DoneItem({ todo }) {
   const dispatch = useDispatch();
   const pressed = useSelector(state => state.todos.pressed);
+
+  const rollBack = () => {
+    dispatch(putTodoThunk({...todo, status: 'todo'}))
+  }
 
   const press = () => {
     if (todo.id === pressed) {
@@ -27,7 +31,11 @@ export default function DoneItem({ todo }) {
         <Text style={styles.doneItem} >{todo.content}</Text>
       </View>
 
-      {pressed === todo.id && <Text>test</Text>}
+      {pressed === todo.id && 
+        <TouchableOpacity onPress={rollBack}>
+          <Text style={styles.textAlignCenter}>다시 하기</Text>
+        </TouchableOpacity>
+      }
     </TouchableOpacity>
   )
 }
