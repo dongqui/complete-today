@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Text, View, TouchableOpacity } from 'react-native';
@@ -8,7 +8,7 @@ import styles from './TodoStyles';
 
 import { putTodoThunk, pressTodo } from '../../reducers/todos';
 
-export default function TodoItem({ todo }) {
+export default function TodoItem({ todo, edit }) {
   
   const dispatch = useDispatch();
   const pressed = useSelector(state => state.todos.pressed, []);
@@ -21,7 +21,7 @@ export default function TodoItem({ todo }) {
   }
 
   const onPressEdit = () => {
-
+    edit(todo);
   }
 
   const press = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { postTodoThunk } from '../../reducers/todos';
+import { postTodoThunk, putTodoThunk } from '../../reducers/todos';
 
 import { Text, View, TextInput, ScrollView, Button } from 'react-native';
 import Modal from 'react-native-modal';
@@ -17,13 +17,31 @@ import { clearData } from '../../localStorage/index'
 function TodoList() {
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ content, setContent ] = useState('');
+  const [ toEdit, setToEdit]  = useState(null);
   const dispatch = useDispatch();
   const { todoList } = useSelector(state => state.todos, []);
 
   const submitTodo = () => {
-    dispatch(postTodoThunk({ content, status: 'todo', activate: 'true' }));
+    if (toEdit) {
+      dispatch(putTodoThunk({...toEdit, content}))
+    } else {
+      dispatch(postTodoThunk({ content, status: 'todo', activate: 'true' }));
+    }
     setContent('');
     setModalVisible(false);
+    setToEdit(null);
+  }
+
+  const cancelSubmit = () => {
+    setContent('');
+    setModalVisible(false);
+    setToEdit(null);
+  }
+
+  const edit = (todo) => {
+    setToEdit(todo);
+    setContent(todo.content);
+    setModalVisible(true);
   }
 
   return (
@@ -39,7 +57,7 @@ function TodoList() {
           rightComponent={<Entypo name="edit" size={24} onPress={() => setModalVisible(true)}/>}
         />        
         <ScrollView>
-          {todoList.filter(todo => todo.activate && todo.status === 'todo').map(todo => <TodoItem key={todo.id} todo={todo}/>)}
+          {todoList.filter(todo => todo.activate && todo.status === 'todo').map(todo => <TodoItem key={todo.id} todo={todo} edit={edit}/>)}
         </ScrollView>
       </View>
       
@@ -56,6 +74,7 @@ function TodoList() {
       <Modal isVisible={modalVisible}>
         <View style={styles.modalContainer}>
           <TextInput
+            defaultValue={content}
             autoFocus={true}
             style={styles.modalTextInput}       
             onChangeText={(text) => setContent(text)}             
@@ -71,7 +90,7 @@ function TodoList() {
               title="취소"      
               buttonColor='black'
               titleColor='white'        
-              onPress={() => setModalVisible(false)}
+              onPress={cancelSubmit}
             /> 
           </View>
         </View>
