@@ -9,8 +9,7 @@ export default StyleSheet.create({
   // -------------------- Modal ------------
   modalContainer: {
     flex:1,
-    justifyContent: 'flex-start',
-    marginTop: 140,
+    justifyContent: 'flex-end',
     alignItems: 'stretch'
   },
 
@@ -32,9 +31,9 @@ export default StyleSheet.create({
 
   // -------------------todoList -------------
   container: {
-    width: layout.window.width - 50,
-    marginTop: 50,
-    marginBottom: 50,
+    width: layout.window.width - 40,
+    marginTop: 40,
+    marginBottom: 20,
     flex: 1,
     justifyContent: 'flex-start',
     padding: 10,
