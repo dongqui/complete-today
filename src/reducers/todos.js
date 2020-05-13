@@ -54,6 +54,13 @@ const initialState = {
   pressed: null,
 }
 
+// todoObject = {
+//   id,
+//   status: 'done' | 'todo',
+//   activate: true | false,
+//   content,
+// }
+
 const reducer = (state=initialState, action) => {
   const { type, payload } = action;
   switch (type) {
